@@ -4,9 +4,9 @@ export class Balloon{
 	
 	pos: any; //pos value of the balloon
 	instance: any; // p5 instance
-	private readonly balloonImgWidth = 64; //Balloon image width
-	private readonly balloonImgHeight = 64; //Balloon image height
-	readonly balloonSpeed = 6; // Balloon speed
+	readonly balloonImgWidth = 50; //Balloon image width
+	readonly balloonImgHeight = 80; //Balloon image height
+	readonly balloonSpeed = 7; // Balloon speed
 	readonly balloonLerpValue = 0.7; // Balloon movement lerp value
 	readonly Direction = Direction; // Balloon direction of movement
 
@@ -24,6 +24,8 @@ export class Balloon{
 	}
 
 	show<T>(balloonImg: T){
+		this.instance.noFill();
+		this.instance.strokeWeight(4);
 		this.instance.image(balloonImg,this.pos.x,this.pos.y,this.balloonImgWidth,this.balloonImgHeight);
 	}
 
