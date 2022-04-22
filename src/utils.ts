@@ -1,7 +1,49 @@
 import { Coin } from "./Coin";
+import { Background } from "./Background";
 
 export class Util{
 
+	static clickStop(instance: any, canvas_ref: any)
+    {
+		let play = true;
+
+        canvas_ref.mouseClicked(() => {
+            if(play){instance.noLoop();play = false;console.log("Stopped.")}
+            else{
+                instance.loop();
+                play = true;
+				console.log("Starting...");
+            }
+        });
+
+    }
+
+	static create_background(instance:any){
+		instance.backgrounds.push(new Background(instance,0,0));
+		instance.backgrounds.push(new Background(instance,0, -instance.height));
+		instance.backgrounds.push(new Background(instance,0, -2*instance.height));
+	}
+
+	static applyBackground(instance: any){
+		
+		for (let index = instance.backgrounds.length -1; index >= 0; index--) {
+			instance.backgrounds[index].show();
+			instance.backgrounds[index].update();
+			if(instance.backgrounds[index].offScreen()){
+				
+				//  Delete the offScreen background
+				instance.backgrounds.splice(index,1); //Since I know this will always be the 0th index,no need to increse the index.
+				
+				// Check the last background y pos
+				const last = instance.backgrounds.length - 1;
+				const newInstYPos = instance.backgrounds[last].spawnPos.y - instance.height;
+				
+				// Spawn a new background 
+				instance.backgrounds.push(new Background(instance,0,newInstYPos));
+			}
+		}
+
+	}
 
 	static generate_random_coin (instance:any,number_of_coin:number,radius:number) {
 

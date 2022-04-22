@@ -6,7 +6,7 @@ import { Util } from "./utils";
 import ballon from "../assets/Balloon.png";
 import coin from "../assets/Coin.png";
 import spike from "../assets/Spike.png";
-import sky from "../assets/sky.png";
+import sky from "../assets/sky2.png";
 
 
 const sketch = (p:any) => {
@@ -19,21 +19,22 @@ const sketch = (p:any) => {
 	}
 
 	p.setup = () => {
-		p.createCanvas(400,500);
+		p.cnv = p.createCanvas(400,500);
+		Util.clickStop(p, p.cnv);
 		p.sore = 0;
 		p.spikes = []; 
 		p.coins = [];
+		p.backgrounds = [];
 		p.balloon = new Balloon(p, p.width/2,p.height/2);
 		p.scoreSystem = new ScoreSystem(p);
-		console.log(p.skyImg);
+		Util.create_background(p);
+		console.log(p);
 	}
 
 	p.draw = () => {
-		
-		// Drawing background sky image
-		p.image(p.skyImg,0,0);
-		// p.background(p.skyImg);
 
+		Util.applyBackground(p);
+		
 		if(p.frameCount % 50 == 0 ){
 			p.spikes.push(new Spike(p));
 			Util.generate_random_coin(p,5,18);
@@ -46,9 +47,9 @@ const sketch = (p:any) => {
 				p.spikes.splice(index,1);
 			}
 			if(p.spikes[index].hit(p.balloon)){
-				p.scoreSystem.checkHighScore()
-				p.scoreSystem.showGameOver();
-				p.noLoop();
+				// p.scoreSystem.checkHighScore()
+				// p.scoreSystem.showGameOver();
+				// p.noLoop();
 			}
 		}
 
