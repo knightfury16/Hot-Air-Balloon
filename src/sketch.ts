@@ -3,7 +3,10 @@ declare var p5: any;
 import { Balloon } from "./Balloon";
 import { Coin } from "./Coin";
 import { Spike } from "./Spike";
-import {ScoreSystem} from "./ScoreSystem"
+import {ScoreSystem} from "./ScoreSystem";
+import ballon from "../assets/Balloon.png";
+import coin from "../assets/Coin.png";
+import spike from "../assets/Spike.png";
 
 // console.log(collide2d);
 let score = 0;
@@ -12,9 +15,9 @@ localStorage.setItem("HighScore", '0');
 const sketch = (p:any) => {
 
 	p.preload = () => {
-		p.balloonImg = p.loadImage('./assets/Balloon.png');
-		p.coinImg = p.loadImage('./assets/Coin.png');
-		p.spikeImg = p.loadImage('./assets/Spike.png');
+		p.balloonImg = p.loadImage(ballon);
+		p.coinImg = p.loadImage(coin);
+		p.spikeImg = p.loadImage(spike);
 	}
 
 	p.setup = () => {
