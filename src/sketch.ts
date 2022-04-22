@@ -1,6 +1,5 @@
 declare var p5: any;
 import { Balloon } from "./Balloon";
-import { Coin } from "./Coin";
 import { Spike } from "./Spike";
 import {ScoreSystem} from "./ScoreSystem";
 import { Util } from "./utils";
@@ -8,7 +7,6 @@ import ballon from "../assets/Balloon.png";
 import coin from "../assets/Coin.png";
 import spike from "../assets/Spike.png";
 
-localStorage.setItem("HighScore", '0');
 
 const sketch = (p:any) => {
 
@@ -19,17 +17,17 @@ const sketch = (p:any) => {
 	}
 
 	p.setup = () => {
-		let cnv = p.createCanvas(400,500);
+		p.createCanvas(400,500);
 		p.sore = 0;
-		p.spikes = [];
+		p.spikes = []; 
 		p.coins = [];
 		p.balloon = new Balloon(p, p.width/2,p.height/2);
 		p.scoreSystem = new ScoreSystem(p);
 	}
 
 	p.draw = () => {
+		
 		p.background(51);
-
 
 		if(p.frameCount % 50 == 0 ){
 			p.spikes.push(new Spike(p));
@@ -43,11 +41,7 @@ const sketch = (p:any) => {
 				p.spikes.splice(index,1);
 			}
 			if(p.spikes[index].hit(p.balloon)){
-				// console.log("Game over");
-				if(p.scoreSystem.score > parseInt(localStorage.getItem('HighScore')!))
-				{
-					localStorage.setItem('HighScore',JSON.stringify(p.scoreSystem.score));
-				}
+				p.scoreSystem.checkHighScore()
 				p.scoreSystem.showGameOver();
 				p.noLoop();
 			}

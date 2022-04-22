@@ -4,6 +4,7 @@ export class ScoreSystem{
 	
 	constructor(instance:any){
 		this.instance = instance;
+		if(localStorage.getItem('HighScore') == null){localStorage.setItem('HighScore','0');}
 	}
 
 	showGameOver(){
@@ -15,6 +16,12 @@ export class ScoreSystem{
 		this.instance.text(highScore,this.instance.width -300 ,this.instance.width/2 + 40);
 		this.instance.text(curretScore,this.instance.width -300 ,this.instance.width/2 + 75);
 		
+	}
+
+	checkHighScore(){
+		if(this.score > parseInt(localStorage.getItem('HighScore')!)){
+			localStorage.setItem('HighScore',JSON.stringify(this.score));
+		}
 	}
 
 	show(){
