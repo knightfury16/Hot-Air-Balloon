@@ -34,12 +34,14 @@ const sketch = (p:any) => {
 	p.draw = () => {
 
 		Util.applyBackground(p);
+		p.balloon.show(p.balloonImg);
 		
 		if(p.frameCount % 50 == 0 ){
 			p.spikes.push(new Spike(p));
 			Util.generate_random_coin(p,5,18);
 		}
 
+		
 		for (let index = p.spikes.length - 1; index >= 0; index--) {
 			p.spikes[index].show(p.spikeImg);
 			p.spikes[index].update();	
@@ -47,11 +49,13 @@ const sketch = (p:any) => {
 				p.spikes.splice(index,1);
 			}
 			if(p.spikes[index].hit(p.balloon)){
-				// p.scoreSystem.checkHighScore()
-				// p.scoreSystem.showGameOver();
-				// p.noLoop();
+				p.coins.splice(0,p.coins.length);
+				p.scoreSystem.checkHighScore()
+				p.scoreSystem.showGameOver();
+				p.noLoop();
 			}
 		}
+		
 
 		for (let index = p.coins.length - 1; index >= 0; index--) {
 			p.coins[index].show(p.coinImg);
@@ -62,12 +66,10 @@ const sketch = (p:any) => {
 			if(p.coins[index].hit(p.balloon)){
 				p.scoreSystem.score++;
 				p.coins.splice(index,1);
-				// console.log(p.scoreSystem.score);
 				// p.noLoop();
 			}
 		}
-		
-		p.balloon.show(p.balloonImg);
+
 		p.scoreSystem.show();
 		p.playerControl();
 
