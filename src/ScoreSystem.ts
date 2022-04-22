@@ -9,6 +9,7 @@ export class ScoreSystem{
 
 	showGameOver(){
 		this.instance.fill(255);
+		this.instance.stroke('red');
 		this.instance.textSize(32);
 		let highScore = `High Score = ${localStorage.getItem('HighScore')}`;
 		let curretScore = `Socre = ${this.score}`;
@@ -26,6 +27,8 @@ export class ScoreSystem{
 
 	show(){
 		this.instance.fill(255);
+		this.instance.stroke('red');
+		this.instance.strokeWeight(1.5);
 		this.instance.textSize(20);
 		let toShow = `Score ${this.score}`
 		this.instance.text(toShow,10,25)
