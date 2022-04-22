@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
 	mode:'development',
@@ -29,5 +31,12 @@ module.exports = {
 		static: {
 			directory: path.join(__dirname, 'dist'),
 		}
-	}
+	},
+
+	plugins:[
+		new CleanWebpackPlugin(),
+		new HtmlWebPackPlugin({
+			template:"./src/index.html"
+		})
+	]
 }
