@@ -8,9 +8,10 @@ export class Util{
 		let play = true;
 
         canvas_ref.mouseClicked(() => {
-            if(play){instance.noLoop();play = false;console.log("Stopped.")}
+            if(play){instance.noLoop();instance.backgroundMusic.pause();play = false;console.log("Stopped.")}
             else{
                 instance.loop();
+				instance.backgroundMusic.play();
                 play = true;
 				console.log("Starting...");
             }

@@ -14,7 +14,7 @@ export class Background{
 	}
 
 	update(){
-		this.spawnPos.y += this.bgSpeed;
+		this.spawnPos.y += this.instance.speed - 2;
 	}
 
 	show(){

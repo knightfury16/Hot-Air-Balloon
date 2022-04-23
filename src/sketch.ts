@@ -34,13 +34,14 @@ const sketch = (p:any) => {
 		p.coins = [];
 		p.backgrounds = [];
 		p.play = false;
+		p.speed = 5;
 		p.balloon = new Balloon(p, p.width/2,p.height/2);
 		p.scoreSystem = new ScoreSystem(p);
 		p.backgroundMusic.volume = 0.2;
 		p.collectCoin.volume = 0.3;
 		p.impact.volume = 0.4;
 		Util.create_background(p);
-		console.log(p);
+		// console.log(p);
 	}
 
 	p.draw = () => {
@@ -51,6 +52,12 @@ const sketch = (p:any) => {
 		if(p.frameCount % 50 == 0 ){
 			p.spikes.push(new Spike(p));
 			Util.generate_random_coin(p,5,18);
+		}
+
+		if(p.frameCount % 400 == 0){
+			// console.log("Speed Chnaging");
+			// console.log(p.speed);
+			p.speed += 0.5;
 		}
 
 		
@@ -67,7 +74,7 @@ const sketch = (p:any) => {
 				p.scoreSystem.showGameOver();
 				p.backgroundMusic.pause();
 				p.noLoop();
-				console.log("Hit");
+				// console.log("Hit");
 			}
 		}
 		

@@ -10,7 +10,7 @@ export class Coin{
 	}
 
 	update(){
-		this.spawnPos.y += this.coinSpeed;
+		this.spawnPos.y += this.instance.speed;
 	}
 
 	show<T>(coinImg: T){
@@ -28,6 +28,10 @@ export class Coin{
 			d: ballon.balloonImgWidth
 		}
 		return this.instance.collideRectCircle(this.spawnPos.x,this.spawnPos.y,this.size,this.size,cirPos.x,cirPos.y,cirPos.d);
+	}
+
+	static changeSpeed(){
+		
 	}
 
 }

@@ -16,7 +16,7 @@ export class Spike{
 	}
 
 	update(){
-		this.spawnPos.y += this.spikeSpeed;
+		this.spawnPos.y += this.instance.speed;
 	}
 
 	show<T>(spikeImg: T){
