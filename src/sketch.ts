@@ -7,6 +7,9 @@ import ballon from "../assets/Balloon.png";
 import coin from "../assets/Coin.png";
 import spike from "../assets/Spike.png";
 import sky from "../assets/sky2.png";
+import bgMx from "../assets/background.mp3";
+import coinMX from "../assets/coin.wav";
+import impactMX from "../assets/impact.wav";
 import "./styles.css";
 
 
@@ -17,6 +20,9 @@ const sketch = (p:any) => {
 		p.coinImg = p.loadImage(coin);
 		p.spikeImg = p.loadImage(spike);
 		p.skyImg = p.loadImage(sky);
+		p.backgroundMusic = new Audio(bgMx);
+		p.collectCoin = new Audio(coinMX);
+		p.impact = new Audio(impactMX);
 	}
 
 	p.setup = () => {
@@ -27,9 +33,14 @@ const sketch = (p:any) => {
 		p.spikes = []; 
 		p.coins = [];
 		p.backgrounds = [];
+		p.play = false;
 		p.balloon = new Balloon(p, p.width/2,p.height/2);
 		p.scoreSystem = new ScoreSystem(p);
+		p.backgroundMusic.volume = 0.2;
+		p.collectCoin.volume = 0.3;
+		p.impact.volume = 0.4;
 		Util.create_background(p);
+		console.log(p);
 	}
 
 	p.draw = () => {
@@ -50,11 +61,13 @@ const sketch = (p:any) => {
 				p.spikes.splice(index,1);
 			}
 			if(p.spikes[index].hit(p.balloon)){
+				p.impact.play();
 				p.coins.splice(0,p.coins.length);
 				p.scoreSystem.checkHighScore()
 				p.scoreSystem.showGameOver();
+				p.backgroundMusic.pause();
 				p.noLoop();
-				// console.log("Hit");
+				console.log("Hit");
 			}
 		}
 		
@@ -66,6 +79,7 @@ const sketch = (p:any) => {
 				p.coins.splice(index,1);
 			}
 			if(p.coins[index].hit(p.balloon)){
+				p.collectCoin.play();
 				p.scoreSystem.score++;
 				p.coins.splice(index,1);
 				// p.noLoop();
@@ -80,10 +94,12 @@ const sketch = (p:any) => {
 	p.playerControl = () => {
 		if (p.keyIsDown(p.LEFT_ARROW)) {
 			p.balloon.moveLeft();
+			if(!p.play){p.backgroundMusic.play();p.play=true;}
 		}
 		
 		if (p.keyIsDown(p.RIGHT_ARROW)) {
 			p.balloon.moveRight();
+			if(!p.play){p.backgroundMusic.play();p.play=true;}
 		}
 		
 	}
