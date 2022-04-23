@@ -76,4 +76,17 @@ export class Util{
 		}
 	}
 
+
+	static frameCount(instance: any)
+    {
+        instance.div = instance.createDiv("FrameRate = ");
+        instance.span = instance.createSpan("60");
+        instance.span.parent(instance.div);
+
+        setInterval(() =>{
+            let fr = instance.ceil(instance.frameRate());
+            instance.span.html(fr);
+        }, 1000);
+    }
+
 }

@@ -22,6 +22,7 @@ const sketch = (p:any) => {
 	p.setup = () => {
 		p.cnv = p.createCanvas(420,550);
 		Util.clickStop(p, p.cnv);
+		// Util.frameCount(p);
 		p.sore = 0;
 		p.spikes = []; 
 		p.coins = [];
@@ -53,6 +54,7 @@ const sketch = (p:any) => {
 				p.scoreSystem.checkHighScore()
 				p.scoreSystem.showGameOver();
 				p.noLoop();
+				// console.log("Hit");
 			}
 		}
 		

@@ -2,7 +2,7 @@ export class Coin{
 	instance: any ; 
 	spawnPos: any;
 	size: number;
-	coinSpeed = 4;
+	coinSpeed = 5;
 	constructor(instance:any,x:number,y:number, size:number){
 		this.instance = instance;
 		this.spawnPos = this.instance.createVector(x,y);
@@ -22,8 +22,12 @@ export class Coin{
 	}
 
 	hit(ballon:any){
-		return this.instance.collideRectRect(this.spawnPos.x,this.spawnPos.y,this.size,this.size,ballon.pos.x,ballon.pos.y,ballon.balloonImgWidth,ballon.balloonImgHeight);
+		let cirPos = {
+			x: ballon.pos.x + (ballon.balloonImgWidth/2),
+			y: ballon.pos.y + (ballon.balloonImgWidth/2),
+			d: ballon.balloonImgWidth
+		}
+		return this.instance.collideRectCircle(this.spawnPos.x,this.spawnPos.y,this.size,this.size,cirPos.x,cirPos.y,cirPos.d);
 	}
 
-	
 }

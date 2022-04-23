@@ -4,7 +4,7 @@ export class Background{
 	spawnPos: any;
 	width: number;
 	height: number;
-	bgSpeed = 2;
+	bgSpeed = 3;
 
 	constructor(instance:any, posX: number, posY: number){
 		this.instance = instance;

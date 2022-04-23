@@ -6,7 +6,7 @@ export class Balloon{
 	instance: any; // p5 instance
 	readonly balloonImgWidth = 50; //Balloon image width
 	readonly balloonImgHeight = 80; //Balloon image height
-	readonly balloonSpeed = 7; // Balloon speed
+	readonly balloonSpeed = 8; // Balloon speed
 	readonly balloonLerpValue = 0.7; // Balloon movement lerp value
 	readonly Direction = Direction; // Balloon direction of movement
 
