@@ -7,6 +7,7 @@ import ballon from "../assets/Balloon.png";
 import coin from "../assets/Coin.png";
 import spike from "../assets/Spike.png";
 import sky from "../assets/sky2.png";
+import "./styles.css";
 
 
 const sketch = (p:any) => {
@@ -19,7 +20,7 @@ const sketch = (p:any) => {
 	}
 
 	p.setup = () => {
-		p.cnv = p.createCanvas(400,500);
+		p.cnv = p.createCanvas(420,550);
 		Util.clickStop(p, p.cnv);
 		p.sore = 0;
 		p.spikes = []; 
@@ -28,7 +29,6 @@ const sketch = (p:any) => {
 		p.balloon = new Balloon(p, p.width/2,p.height/2);
 		p.scoreSystem = new ScoreSystem(p);
 		Util.create_background(p);
-		console.log(p);
 	}
 
 	p.draw = () => {
