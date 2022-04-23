@@ -13,9 +13,9 @@ export class ScoreSystem{
 		this.instance.textSize(32);
 		let highScore = `High Score = ${localStorage.getItem('HighScore')}`;
 		let curretScore = `Socre = ${this.score}`;
-		this.instance.text("Game over",this.instance.width -300 ,this.instance.width/2);
-		this.instance.text(highScore,this.instance.width -300 ,this.instance.width/2 + 40);
-		this.instance.text(curretScore,this.instance.width -300 ,this.instance.width/2 + 75);
+		this.instance.text("Game over",this.instance.width -300 ,this.instance.width/2); //manullay binding the pos,need to make it dynamic
+		this.instance.text(highScore,this.instance.width -300 ,this.instance.width/2 + 40); //manullay binding the pos,need to make it dynamic
+		this.instance.text(curretScore,this.instance.width -300 ,this.instance.width/2 + 75); //manullay binding the pos,need to make it dynamic
 		
 	}
 
@@ -31,6 +31,6 @@ export class ScoreSystem{
 		this.instance.strokeWeight(1.5);
 		this.instance.textSize(20);
 		let toShow = `Score ${this.score}`
-		this.instance.text(toShow,10,25)
+		this.instance.text(toShow,10,25) //manullay binding the pos,need to make it dynamic
 	}
 }

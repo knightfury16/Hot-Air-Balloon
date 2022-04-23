@@ -19,12 +19,14 @@ export class Util{
 
     }
 
+	//Manually pushing three Background object to start the game
 	static create_background(instance:any){
 		instance.backgrounds.push(new Background(instance,0,0));
 		instance.backgrounds.push(new Background(instance,0, -instance.height));
 		instance.backgrounds.push(new Background(instance,0, -2*instance.height));
 	}
 
+	//Dynamically instantiating Background object 
 	static applyBackground(instance: any){
 		
 		for (let index = instance.backgrounds.length -1; index >= 0; index--) {
@@ -33,30 +35,30 @@ export class Util{
 			if(instance.backgrounds[index].offScreen()){
 				
 				//  Delete the offScreen background
-				instance.backgrounds.splice(index,1); //Since I know this will always be the 0th index,no need to increse the index.
+				instance.backgrounds.splice(index,1); //Since I know this will always be the 0th index,no need to increase the index.
 				
 				// Check the last background y pos
 				const last = instance.backgrounds.length - 1;
+				// new background Y pos
 				const newInstYPos = instance.backgrounds[last].spawnPos.y - instance.height;
 				
 				// Spawn a new background 
 				instance.backgrounds.push(new Background(instance,0,newInstYPos));
 			}
 		}
-
 	}
-
-	static generate_random_coin (instance:any,number_of_coin:number,radius:number) {
+	// Generate random coin without overlapping
+	static generate_random_coin (instance:any,number_of_coin:number,size:number) {
 
 		for (let i = 0; i < number_of_coin; i++) {
 	
-			let temp_r = radius;
+			let temp_r = size;
 			let x: number;
 			let y: number;
 			let r: number;
 			//Creating a temp circle object to check if it overlaps with the existing circle object in the canvas.
 			let cir = {
-				x: instance.random(radius, instance.width - radius),
+				x: instance.random(size, instance.width - size),
 				y: instance.random(-150, 0),
 				r: temp_r
 			};
@@ -77,7 +79,7 @@ export class Util{
 		}
 	}
 
-
+	//Util method to see the framecount
 	static frameCount(instance: any)
     {
         instance.div = instance.createDiv("FrameRate = ");

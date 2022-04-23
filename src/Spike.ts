@@ -1,12 +1,12 @@
 export class Spike{
-	instance: any;
-	spawnPos:any;
-	spawnYOffset = -10;
-	spikeSpeed = 5;
-	spikeImgWidth:number;
-	spikeImgHeight = 8;
-	spikeMinLength = 100;
-	spikeMaxLength: number;
+	instance: any; //p5 instance
+	spawnPos:any; //spawn pos of the spike, p5.vector
+	spawnYOffset = -10; //starting y pos of the spike spawn
+	spikeSpeed = 5; //not using it anymore
+	spikeImgWidth:number; //spike image width
+	spikeImgHeight = 8; //spike image height
+	spikeMinLength = 100; //spike minimum length possible
+	spikeMaxLength: number; //spike maximum length possible
 
 	constructor(instance:any){
 		this.instance = instance;
@@ -32,11 +32,13 @@ export class Spike{
 	}
 
 	hit(ballon:any){
+		//custom circle object to tight bound the collision
 		let cirPos = {
 			x: ballon.pos.x + (ballon.balloonImgWidth/2),
 			y: ballon.pos.y + (ballon.balloonImgWidth/2),
 			d: ballon.balloonImgWidth - 5 // 5 is offset value 
 		}
+		//collideRectCircle method from p5collide2D library.
 		return this.instance.collideRectCircle(this.spawnPos.x,this.spawnPos.y,this.spikeImgWidth,this.spikeImgHeight,cirPos.x,cirPos.y,cirPos.d);
 	}
 
