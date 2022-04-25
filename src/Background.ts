@@ -1,28 +1,29 @@
+import P5 from "p5";
+
 export class Background{
 
-	instance: any;
-	spawnPos: any;
+	p5: P5;
+	spawnPos: P5.Vector;
 	width: number;
 	height: number;
-	bgSpeed = 3; //not using it anymore
 
-	constructor(instance:any, posX: number, posY: number){
-		this.instance = instance;
-		this.spawnPos = instance.createVector(posX,posY);
-		this.width = instance.width;
-		this.height = instance.height;
+	constructor(p5:P5, posX: number, posY: number){
+		this.p5 = p5;
+		this.spawnPos = p5.createVector(posX,posY);
+		this.width = p5.width;
+		this.height = p5.height;
 	}
 
 	update(){
-		this.spawnPos.y += this.instance.speed - 2;
+		this.spawnPos.y += this.p5.speed - 2;
 	}
 
-	show(){
-		this.instance.image(this.instance.skyImg,this.spawnPos.x,this.spawnPos.y,this.width,this.height);
+	show(skyImg:P5.Image){
+		this.p5.image(skyImg,this.spawnPos.x,this.spawnPos.y,this.width,this.height);
 	}
 
 	offScreen(){
-		return this.spawnPos.y > this.instance.height;
+		return this.spawnPos.y > this.p5.height;
 	}
 
 }

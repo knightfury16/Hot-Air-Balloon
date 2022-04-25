@@ -1,36 +1,22 @@
-export class Coin{
-	instance: any ; //p5 instance
-	spawnPos: any; //spawn position of the coin
-	size: number; // size of the coin image
-	coinSpeed = 5; //not using it anymore, using the instance.speed value to change speed dynamically.
+import P5 from "p5";
 
-	constructor(instance:any,x:number,y:number, size:number){
-		this.instance = instance;
-		this.spawnPos = this.instance.createVector(x,y);
+export class Coin{
+	p5: P5 ; //p5 p5
+	spawnPos: P5.Vector; //spawn position of the coin
+	readonly size: number; // size of the coin image
+
+	constructor(p5: P5, x: number, y: number, size: number){
+		this.p5 = p5;
+		this.spawnPos = this.p5.createVector(x,y);
 		this.size = size;
 	}
 
 	update(){
-		this.spawnPos.y += this.instance.speed;
+		this.spawnPos.y += this.p5.speed;
 	}
 
-	show<T>(coinImg: T){
-		this.instance.image(coinImg,this.spawnPos.x,this.spawnPos.y, this.size,this.size);
-	}
-
-	offScreen(){
-		return this.spawnPos.y > this.instance.height;
-	}
-
-	hit(ballon:any){
-		// custom circle object to tight bound the collision with the ballon.
-		let cirPos = {
-			x: ballon.pos.x + (ballon.balloonImgWidth/2),
-			y: ballon.pos.y + (ballon.balloonImgWidth/2),
-			d: ballon.balloonImgWidth
-		}
-		//collideRectCircle method from p5collide2D library.
-		return this.instance.collideRectCircle(this.spawnPos.x,this.spawnPos.y,this.size,this.size,cirPos.x,cirPos.y,cirPos.d);
+	show(coinImg: P5.Image){
+		this.p5.image(coinImg,this.spawnPos.x,this.spawnPos.y, this.size,this.size);
 	}
 
 }
