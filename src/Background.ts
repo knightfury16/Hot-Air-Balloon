@@ -15,7 +15,7 @@ export class Background{
 	}
 
 	update(){
-		this.spawnPos.y += this.p5.speed - 2;
+		this.spawnPos.y += global.speed - 2;
 	}
 
 	show(skyImg:P5.Image){

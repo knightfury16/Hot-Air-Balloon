@@ -18,7 +18,7 @@ export class Spike {
 	}
 
 	update(){
-		this.spawnPos.y += this.p5.speed;
+		this.spawnPos.y += global.speed;
 	}
 
 	show(spikeImg: P5.Image){

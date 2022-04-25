@@ -1,7 +1,7 @@
 import P5 from "p5";
 import { Coin } from "./Coin";
-import { CollisionSystem } from "./CollisionSystem";
 import { Spike } from "./Spike";
+import { CollisionSystem } from "./CollisionSystem";
 
 enum Direction{LEFT,RIGHT};
 

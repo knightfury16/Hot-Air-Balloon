@@ -1,14 +1,22 @@
-declare module "*.png" {
-	const value: any;
-	export = value;
+
+declare global{
+
+	declare module "*.png" {
+		const value: any;
+		export = value;
+	}
+	
+	declare module "*mp3" {
+		const value: any;
+		export = value;
+	}
+	
+	declare module "*wav" {
+		const value: any;
+		export = value;
+	}
+	
+	var speed: number;
 }
 
-declare module "*mp3" {
-	const value: any;
-	export = value;
-}
-
-declare module "*wav" {
-	const value: any;
-	export = value;
-}
+export{};

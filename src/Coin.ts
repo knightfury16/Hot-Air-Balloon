@@ -12,7 +12,7 @@ export class Coin{
 	}
 
 	update(){
-		this.spawnPos.y += this.p5.speed;
+		this.spawnPos.y += global.speed;
 	}
 
 	show(coinImg: P5.Image){

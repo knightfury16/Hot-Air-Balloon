@@ -15,7 +15,7 @@ import { Coin } from "./Coin";
 import { Background } from "./Background";
 import "./styles.css";
 
-P5.prototype.speed = 5; //making the speed variable global
+global.speed = 5; //making the speed variable global
 
 
 export const sketch = (p5: P5) => {
@@ -69,7 +69,7 @@ export const sketch = (p5: P5) => {
 		}
 		//change the speed of the game every 400 frames rougly 10 seconds
 		if(p5.frameCount % 400 == 0){
-			p5.speed += 0.5;
+			global.speed += 0.5;
 		}
 
 		if(Util.renderSpawnObjectAndCheckCollision(spikes,spikeImg,balloon,impact,scoreSystem)){
